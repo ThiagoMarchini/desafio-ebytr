@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+// import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import LoginForm from './pages/LoginForm'
+import TasksList from './pages/TasksList';
+import UsersList from './pages/UsersList';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [user, setUser] = useState();
+  const [role, setRole] = useState();
+
+  if (!user && !role) {
+    return <LoginForm setUser={setUser} setRole={setRole} />
+  }
+
+  if (user && role === 'admin') {
+    return <UsersList />
+  }
+
+  return <TasksList user={user} />;
 }
 
 export default App;

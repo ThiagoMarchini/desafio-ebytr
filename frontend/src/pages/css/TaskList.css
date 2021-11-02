@@ -1,0 +1,9 @@
+.table-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.selected-arrow {
+  color: red;
+}
