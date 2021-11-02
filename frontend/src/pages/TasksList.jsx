@@ -18,6 +18,42 @@ function TasksList({user}) {
     });
   }, []);
 
+  const sortAscendingTasks = () => {
+    let newArray = [...tasks];
+    newArray.sort((a,b)=> (a.task > b.task ? 1 : -1))
+    setTasks(newArray);
+  }
+
+  const sortDescendingTasks = () => {
+    let newArray = [...tasks];
+    newArray.sort((a,b)=> (a.task > b.task ? -1 : 1))
+    setTasks(newArray);
+  }
+
+  const sortAscendingStatus = () => {
+    let newArray = [...tasks];
+    newArray.sort((a,b)=> (a.status > b.status ? 1 : -1))
+    setTasks(newArray);
+  }
+
+  const sortDescendingStatus = () => {
+    let newArray = [...tasks];
+    newArray.sort((a,b)=> (a.status > b.status ? -1 : 1))
+    setTasks(newArray);
+  }
+
+  const sortAscendingDate = () => {
+    let newArray = [...tasks];
+    newArray.sort((a,b)=> (a.creationDate > b.creationDate ? 1 : -1))
+    setTasks(newArray);
+  }
+
+  const sortDescendingDate = () => {
+    let newArray = [...tasks];
+    newArray.sort((a,b)=> (a.creationDate > b.creationDate ? -1 : 1))
+    setTasks(newArray);
+  }
+
   return(
     <div>
       <h2>TasksList</h2>
@@ -27,15 +63,45 @@ function TasksList({user}) {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th className="table-title">
+              <th className="title">
                 Tarefa
                 <div>
-                  <i className="bi bi-arrow-up"></i>
-                  <i className="bi bi-arrow-down"></i>
+                  <button type="button"class="btn btn-type-secondary">
+                    <i onClick={sortAscendingTasks} className="bi bi-arrow-up-square-fill"></i>
+                    <span className="visually-hidden">Button</span>
+                  </button>
+                  <button type="button"class="btn btn-type-secondary">
+                    <i onClick={sortDescendingTasks} className="bi bi-arrow-down-square-fill"></i>
+                    <span className="visually-hidden">Button</span>
+                  </button>
                 </div>
               </th>
-              <th>Status</th>
-              <th>Data de criação</th>
+              <th className="title">
+                Status
+                <div>
+                  <button type="button"class="btn btn-type-secondary">
+                    <i onClick={sortAscendingStatus} className="bi bi-arrow-up-square-fill"></i>
+                    <span className="visually-hidden">Button</span>
+                  </button>
+                  <button type="button"class="btn btn-type-secondary">
+                    <i onClick={sortDescendingStatus} className="bi bi-arrow-down-square-fill"></i>
+                    <span className="visually-hidden">Button</span>
+                  </button>
+                </div>
+              </th>
+              <th>
+                Data de criação
+                <div>
+                  <button type="button"class="btn btn-type-secondary">
+                    <i onClick={sortAscendingDate} className="bi bi-arrow-up-square-fill"></i>
+                    <span className="visually-hidden">Button</span>
+                  </button>
+                  <button type="button"class="btn btn-type-secondary">
+                    <i onClick={sortDescendingDate} className="bi bi-arrow-down-square-fill"></i>
+                    <span className="visually-hidden">Button</span>
+                  </button>
+                </div>
+              </th>
               <th>Salvar</th>
               <th>Apagar</th>
             </tr>
