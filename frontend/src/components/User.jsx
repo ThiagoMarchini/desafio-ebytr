@@ -22,7 +22,8 @@ function User({ id, email, role }) {
 
   const removeUser = (e) => {
     const id = e.target.parentElement.parentElement.parentElement.id;
-    socket.emit('deleteUser', {id, email});
+    console.log(id);
+    socket.emit('deleteUser', {id});
   }
 
   const editUser = (e) => {

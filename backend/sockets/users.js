@@ -9,8 +9,9 @@ module.exports = (io) => {
       socket.emit('receiveUsers', await getAll());
     });
 
-    socket.on('deleteUser', async ({ id, email }) => {
-      await deleteUser(id, email);
+    socket.on('deleteUser', async ({ id }) => {
+      console.log('deleteUser');
+      await deleteUser(id);
       socket.emit('receiveUsers', await getAll());
     });
 

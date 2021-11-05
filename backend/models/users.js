@@ -11,9 +11,9 @@ const createUser = async ({ email, password }) => {
   return newUser;
 };
 
-const deleteUser = async (email) => {
+const deleteUser = async (id) => {
   const db = await connection.getConnection();
-  const result = await db.collection('users').deleteOne({ email });
+  const result = await db.collection('users').deleteOne({ _id: new ObjectId(id) });
   return result;
 };
 

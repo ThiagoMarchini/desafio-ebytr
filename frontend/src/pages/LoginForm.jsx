@@ -10,12 +10,18 @@ function LoginForm ({ setUser, setRole }) {
 
   useEffect(() => {
     socket.on('canLogin', (result) => {
-      const span = document.getElementById('not_found');
       if (result) {
         setUser(result.email);
         setRole(result.role);
       }
-      if (!result) span.innerText = 'Usuário/senha inválidos!';
+      if (!result) {
+        const topInfo = document.getElementById("top");
+        console.log(topInfo);
+        const span = document.createElement("span");
+        span.className = "span";
+        span.innerText = 'Usuário/senha inválidos!';
+        topInfo.appendChild(span);
+      }
     });
   }, []);
   
@@ -25,9 +31,8 @@ function LoginForm ({ setUser, setRole }) {
 
   return (
     <Container className="login">
-      <div className="top-info">
+      <div className="top-info" id="top">
         <h1>Login:</h1>
-        <span data-testid="error" id="not_found"></span>
       </div>
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
@@ -53,7 +58,7 @@ function LoginForm ({ setUser, setRole }) {
                 placeholder="Digite sua senha"
               />
             </Form.Group>
-            <Button data-testid="login-button" className="login-button" variant="primary" onClick={ login }>
+            <Button id="login-button" className="login-button" variant="primary" onClick={ login }>
               Login
             </Button>
           </Form>

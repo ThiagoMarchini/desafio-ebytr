@@ -19,7 +19,7 @@ function UsersList() {
 
   return (
     <div>
-      <h2>Users List</h2>
+      <h2 className="users-list-title">Users List</h2>
       {isLoading ? (
         <p>Carregando</p>
       ) : (
