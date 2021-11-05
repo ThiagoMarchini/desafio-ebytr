@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import socket from '../services/socketClient'
 import PropTypes from 'prop-types';
-import './css/LoginForm.css'
+import './css/LoginForm.css';
 
 function LoginForm ({ setUser, setRole }) {
   const [email, setEmail] = useState();
@@ -14,7 +14,7 @@ function LoginForm ({ setUser, setRole }) {
       if (result) {
         setUser(result.email);
         setRole(result.role);
-      };
+      }
       if (!result) span.innerText = 'Usuário/senha inválidos!';
     });
   }, []);
@@ -25,13 +25,17 @@ function LoginForm ({ setUser, setRole }) {
 
   return (
     <Container className="login">
+      <div className="top-info">
+        <h1>Login:</h1>
+        <span data-testid="error" id="not_found"></span>
+      </div>
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
-          <span id="not_found"></span>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
+              <Form.Label htmlFor="email">Email</Form.Label>
               <Form.Control
+                data-testid="email-input"
                 id="email"
                 onChange={e => setEmail(e.target.value)}
                 placeholder="Digite o seu email" 
@@ -40,15 +44,16 @@ function LoginForm ({ setUser, setRole }) {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Senha</Form.Label>
+              <Form.Label htmlFor="password">Senha</Form.Label>
               <Form.Control
+                data-testid="password-input"
                 id="password"
                 onChange={e => setPassword(e.target.value)}
                 type="password"
-                placeholder="Senha"
+                placeholder="Digite sua senha"
               />
             </Form.Group>
-            <Button className="login-button" variant="primary" onClick={ login }>
+            <Button data-testid="login-button" className="login-button" variant="primary" onClick={ login }>
               Login
             </Button>
           </Form>

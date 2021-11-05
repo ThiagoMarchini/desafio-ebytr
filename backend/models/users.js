@@ -1,4 +1,5 @@
 const connection = require('./connection');
+const { ObjectId } = require('mongodb');
 
 const createUser = async ({ email, password }) => {
   const db = await connection.getConnection();
@@ -16,6 +17,16 @@ const deleteUser = async (email) => {
   return result;
 };
 
+const editUser = async (id, email, role) => {
+  const db = await connection.getConnection();
+  const result = await db.collection('users').updateOne(
+    { _id: new ObjectId(id) },
+    { $set: { email, role } },
+  );
+
+  return result;
+};
+
 const getAll = async () => {
   const db = await connection.getConnection();
   const users = await db.collection('users').find().toArray();
@@ -29,7 +40,7 @@ const getUser = async (email, password) => {
     if (result.email === email && result.password === password) {
       return result;
     }
-  } catch (_e) {
+  } catch {
     return false;
   }
 };
@@ -37,6 +48,7 @@ const getUser = async (email, password) => {
 module.exports = {
   createUser,
   deleteUser,
+  editUser,
   getAll,
   getUser,
 };

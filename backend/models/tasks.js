@@ -16,7 +16,6 @@ const createTask = async ({ status, task, user }) => {
 };
 
 const deleteTask = async (id) => {
-  console.log(id);
   const db = await connection.getConnection();
   const result = await db.collection('user_tasks').deleteOne({ _id: new ObjectId(id) });
   return result;
@@ -28,16 +27,13 @@ const editTask = async (id, status, task) => {
     { _id: new ObjectId(id) },
     { $set: { status, task } },
   );
-  console.log(result);
 
   return result;
 };
 
 const getTasks = async (user) => {
-  console.log(`Usuário: ${user}`);
   const db = await connection.getConnection();
   const result = await db.collection('user_tasks').find({ user }).toArray();
-  console.log(result)
 
   return result;
 };

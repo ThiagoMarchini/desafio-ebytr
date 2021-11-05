@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import socket from '../services/socketClient'
 
 function Task({ id, index, creationDate, status, task, user }) {
-  const [taskItem, setTaskItem] = useState({_id: id, task, status, creationDate});
 
   const changeTaskValue = (e) => {
     const original = e.target.innerText;
@@ -12,10 +11,6 @@ function Task({ id, index, creationDate, status, task, user }) {
   const saveTaskValue = (e) => {
     const newValue = e.target.value;
     e.target.parentElement.textContent = newValue;
-    // setTaskItem({
-    //   ...taskItem,
-    //   task: newValue,
-    // })
   }
 
   const checkSelected = (value) => {

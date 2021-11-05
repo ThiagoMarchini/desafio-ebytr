@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import LoginForm from './pages/LoginForm'
 import TasksList from './pages/TasksList';
 import UsersList from './pages/UsersList';

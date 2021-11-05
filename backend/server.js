@@ -14,14 +14,9 @@ const io = require('socket.io')(http, {
   },
 });
 
-const tasksController = require('./controllers/tasks');
-const usersController = require('./controllers/users')
-
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use('/tasks', tasksController);
-// app.use('/users', usersController);
 require('./sockets/tasks')(io);
 require('./sockets/users')(io);
 
