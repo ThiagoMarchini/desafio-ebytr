@@ -9,7 +9,7 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://localhost:37115'],
     methods: ['GET', 'POST'],
   },
 });
