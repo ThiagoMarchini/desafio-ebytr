@@ -56,7 +56,7 @@ function TasksList({user}) {
 
   return(
     <div>
-      <h2>TasksList</h2>
+      <h2>Tasks List</h2>
       {isLoading ? (
         <p>Carregando</p>
       ) : (

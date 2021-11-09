@@ -26,7 +26,11 @@ function LoginForm ({ setUser, setRole }) {
   }, []);
   
   let login = async () => {
-    socket.emit('getUser', { email, password });
+    try {
+      socket.emit('getUser', { email, password });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
